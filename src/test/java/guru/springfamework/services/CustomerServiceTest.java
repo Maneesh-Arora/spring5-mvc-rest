@@ -19,7 +19,7 @@ import java.util.Optional;
 
 import static org.junit.Assert.assertEquals;
 import static org.mockito.ArgumentMatchers.*;
-import static org.mockito.Mockito.when;
+import static org.mockito.Mockito.*;
 
 public class CustomerServiceTest {
 
@@ -127,5 +127,13 @@ public class CustomerServiceTest {
 
         assertEquals(customerDTO.getFirstName(), savedDto.getFirstName());
         assertEquals(customerDTO.getLastName(), savedDto.getLastName());
+    }
+
+    @Test
+    public void deleteCustomerById() throws Exception
+    {
+        Long id = 1L;
+        customerRepository.deleteById(id);
+        verify(customerRepository,times(1)).deleteById(anyLong());
     }
 }
